@@ -1,0 +1,30 @@
+const button = document.getElementById('button')
+const toasts = document.getElementById('toasts')
+
+const messages = [
+    'Message One',
+    'Message Two',
+    'Message Three',
+    'Message Four'
+]
+
+button.addEventListener('click', () => createNotification())
+
+function createNotification() {
+    const delay = 5 // in seconds
+    const notification = document.createElement('div')
+    notification.classList.add('toast')
+    notification.style.animation = `fadeOut ${delay}s ease-in`
+
+    notification.innerText = getRandomMessage()
+
+    toasts.appendChild(notification)
+
+    setTimeout(() => {
+        notification.remove()
+    }, delay * 1000)
+}
+
+function getRandomMessage() {
+    return messages[Math.floor(Math.random() * messages.length)]
+}
